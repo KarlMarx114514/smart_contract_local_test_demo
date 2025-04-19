@@ -41,7 +41,7 @@ describe("智能合约测试用例", function () {
     it("取款功能测试（锁定时间内）", async function () {
         console.log("-----------------开始测试取款功能（应拒绝取款）-----------------");
         const tx = lock.withdraw();
-        await expect(tx).to.be.revertedWith("You can't withdraw yet");
+        await expect(tx).to.be.revertedWith("You can't withdraw yet"); // 断言，取款失败
         console.log("取款失败，锁定时间未到");
     });
     it("取款功能测试（锁定时间后）（部署者）", async function () {
@@ -55,11 +55,12 @@ describe("智能合约测试用例", function () {
 
         const ownerBalanceAfter = await hre.ethers.provider.getBalance(await owner.getAddress());
         console.log("获取取款后部署者余额: ", hre.ethers.formatEther(ownerBalanceAfter), "ETH");
+        expect(contractBalanceAfter).to.equal(0); // 断言，取款成功，合约余额为0
     });
     it("取款功能测试（锁定时间后）（其他账户）", async function () {
         console.log("-----------------开始测试取款功能（应拒绝取款）-----------------");
         const tx = lock.connect(otherAccount).withdraw();
-        await expect(tx).to.be.revertedWith("You aren't the owner");
+        await expect(tx).to.be.revertedWith("You aren't the owner"); // 断言，取款失败
         console.log("其他账户取款失败，因为不是部署者");
     });
 });

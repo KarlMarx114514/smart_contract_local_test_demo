@@ -1,6 +1,7 @@
 # Dependency
 - npm install
 # ganache_demo
+- change "type": "commonjs" in package.json to "type": "module"
 - node script/ganache_compile.js
 - npx ganache
 - node script/ganache/deploy.js
