@@ -1,8 +1,15 @@
 {
-  "type": "module",
+  "type": "commonjs",
+  "scripts": {
+    "hardhat_test":"npx hardhat test script/hardhat/hardhat_test.ts"
+  },
   "dependencies": {
     "ganache": "^7.9.2",
+    "hardhat": "^2.23.0",
     "solc": "^0.8.29",
     "web3": "^4.16.0"
+  },
+  "devDependencies": {
+    "@nomicfoundation/hardhat-toolbox": "^5.0.0"
   }
 }
